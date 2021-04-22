@@ -1,0 +1,57 @@
+Project Milestone 1 - Data Collection
+
+1. how the data is collected (10 pts)
+
+Data is stored in GCP Storage bucket and imported in Jupyter Notebook using bigquery Client.
+what is the data and what information of EACH column represent (10 pts), and 
+The dataset is used contain following columns mentions below and represent hosing market of Washington. All of them are self are self explanatory by their name such as number of bedroom/bathrooms, house price, square feet of the house, zip code, etc.
+Index(['id', 'date', 'price', 'bedrooms', 'bathrooms', 'sqft_living',
+       'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade',
+       'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated', 'zipcode',
+       'lat', 'long', 'sqft_living15', ‘sqft_lot15'],
+
+I am might also be using additional dataset from other sources which i have to do web scrapping if necessary and merge it to compare the result.
+
+
+2.List of questions you plan to answer with this dataset (10 pts)
+
+I can use this dataset to answer varies question such as avg price difference of houses between different zipcodes, How much is the price differences of houses with 3 bedroom and 4 bedroom, how much does the age of the house affects its value, i can create can visual graph to demonstrate this questions as well. Depends on the work load i can also try join does different dataset which can predict the forecasted value of the houses.
+
+3.Source code for option 1 or 2. You may include a Jupyter Notebook or your Python source code (30 pts) 
+
+Milestone1.ipynb
+
+from google.cloud import bigquery
+from google.cloud import storage
+import pandas as pd
+import os
+os.environ[‘GOOGLE_APPLICATION_CREDENTIALS']='housedata-311508-48f12327179d.json'
+
+bigquery_client = bigquery.Client(project='housedata-311508')
+df= pd.read_csv('gs://housedatabucket/home_data.csv')
+
+
+housedata-311508-48f12327179d.json
+{
+ "type": "service_account",
+  "project_id": "housedata-311508",
+  "private_key_id": "48f12327179de304e8c0f2891c6ce4a8b57abfac",
+  "private_key": "-----BEGIN PRIVATE KEY——\nMIIEvgIBAD………..T6rd2nG\n——END PRIVATE KEY-----\n",
+  "client_email": "bq-jupyternotebook@housedata-311508.iam.gserviceaccount.com",
+  "client_id": "117471269317462474792",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bq-jupyternotebook%40housedata-311508.iam.gserviceaccount.com"
+}
+
+
+4. The dataset file in CSV format with proper index and header. (10 pts) 
+df= pd.read_csv(‘gs://housedatabucket/home_data.csv')
+Also Attached
+
+A screenshot showing some sample queries of your database file in BigQuery. (10 pts)
+Share your github repo with me (karen-jin) and submit the link through the submission portal. 
+
+https://github.com/idilpreetsingh/Project574
+Screenshot attached
